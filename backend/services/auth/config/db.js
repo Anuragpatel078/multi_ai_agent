@@ -6,5 +6,6 @@ const connectDB=async ()=>{
     }catch(error){
         console.log(`db error ${error}`)
     }
+    
 }
 export default connectDB
