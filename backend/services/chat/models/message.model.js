@@ -11,7 +11,7 @@ const messageSchema=new mongoose.Schema({
         enum:["user","assistant"],
         required:true
     },
-    content:string
+    content:String
 
 
 

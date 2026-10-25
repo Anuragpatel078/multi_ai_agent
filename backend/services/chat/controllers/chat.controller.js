@@ -1,4 +1,4 @@
-import Message from "../models/conversaton.model.js"
+import Message from "../models/message.model.js"
 import Conversation from "../models/conversaton.model.js"
 export const createConversation=async(req,res)=>{
     try{
@@ -10,7 +10,7 @@ export const createConversation=async(req,res)=>{
         return res.status(200).json(conversation)
     }
     catch(error){
-        return res.status(500).json({message:`create conversation error $(error)`})
+        return res.status(500).json({message:`create conversation error ${error}`})
 
     }
 }
@@ -25,21 +25,21 @@ export const getConversation=async(req,res)=>{
         return res.status(200).json(conversation)
     }
     catch(error){
-        return res.status(500).json({message:`get conversation error $(error)`})
+        return res.status(500).json({message:`get conversation error ${error}`})
 
     }
 }
 export const updateConversation=async(req,res)=>{
     try{
         const {id,title}=req.body
-        const conversation=await Conversation.findByIdAndUpdat(id,{
+        const conversation=await Conversation.findByIdAndUpdate(id,{
             title
         })
             
         return res.status(200).json(conversation)
     }
     catch(error){
-        return res.status(500).json({message:`get conversation error $(error)`})
+        return res.status(500).json({message:`update conversation error ${error}`})
 
     }
 }

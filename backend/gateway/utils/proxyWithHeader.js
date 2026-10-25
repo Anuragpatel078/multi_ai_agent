@@ -7,6 +7,7 @@ export const proxyWithHeader=(serviceUrl)=>{
                 proxyReqOpts.headers["x-user-id"]=srcReq.user.userId
 
             }
+            return proxyReqOpts
         }
     })
 }

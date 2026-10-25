@@ -1,10 +1,14 @@
-import React from 'react'
-
 import { signInWithPopup } from 'firebase/auth'
 import api from '../../utils/axios.js'
 import { auth, googleProvider } from '../../utils/firebase'
 import { FcGoogle } from "react-icons/fc";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserdata } from '../redux/userSlice'
+import ChatArea from '../components/ChatArea.jsx';
+import Artifact from '../components/Artifact.jsx';
+import SideBar from '../components/SideBar.jsx';
+
+
 const Home = () => {
 
    const {userData}=useSelector(state=>state.user)
@@ -28,6 +32,10 @@ const Home = () => {
     }
     return (
         <div className='h-screen flex bg-[#0d0f14] text-white overflow-hidden'>
+
+        <SideBar/>
+        <ChatArea/>
+        <Artifact/>
             {!userData && <div className='fixed inset-0 z-50 flex items-center justify-center'>
                 <div className='w-[340px] bg-[#13151c] border border-white/[0.08] rounded-2xl p-7 flex flex-col gap-5'>
                     <div className='flex flex-col gap-1'>
