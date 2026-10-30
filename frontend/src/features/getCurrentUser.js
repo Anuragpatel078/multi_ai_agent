@@ -6,8 +6,10 @@ const getCurrentUser=async()=>{
         return data
     }
     catch(error){
-        console.log(error)
-        return null
+        if (error.response?.status === 401) {
+            return null
+        }
+        throw error
     }
 }
 export default getCurrentUser

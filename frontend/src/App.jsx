@@ -8,8 +8,12 @@ import { setUserdata } from './redux/userSlice'
   const dispatch=useDispatch() 
   useEffect(()=>{
     const getUser=async()=>{
-      const data=await getCurrentUser()
-      dispatch(setUserdata(data))
+      try {
+        const data=await getCurrentUser()
+        dispatch(setUserdata(data))
+      } catch (error) {
+        console.error('Unable to load the current user', error)
+      }
  }
     getUser()
   }, [dispatch])

@@ -12,8 +12,24 @@ const port=process.env.PORT
 
 const app=express()
 
+const allowedOrigins=(process.env.FRONTEND_URL || "")
+    .split(",")
+    .map(origin=>origin.trim())
+    .filter(Boolean)
+
+if(process.env.NODE_ENV !== "production"){
+    allowedOrigins.push(
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://127.0.0.1:5173",
+        "http://127.0.0.1:5174"
+    )
+}
+
 app.use(cors({
-    origin:process.env.FRONTEND_URL,
+    origin:(origin,callback)=>{
+        callback(null,!origin || allowedOrigins.includes(origin))
+    },
     credentials:true
 }))
 app.use(cookieParser())
